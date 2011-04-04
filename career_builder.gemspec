@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{career_builder}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Michael Guterl"]
-  s.date = %q{2011-03-31}
+  s.date = %q{2011-04-04}
   s.description = %q{Ruby wrapper for the CareerBuilder V2 HTTP XML API}
   s.email = %q{mguterl@gmail.com}
   s.extra_rdoc_files = [
@@ -47,9 +47,11 @@ Gem::Specification.new do |s|
     "lib/career_builder/errors.rb",
     "lib/career_builder/resume.rb",
     "lib/career_builder/resume/lazy_collection.rb",
-    "spec/career_builder/client_spec.rb",
+    "spec/career_builder/client/advanced_resume_search_spec.rb",
+    "spec/career_builder/client/authentication_spec.rb",
+    "spec/career_builder/client/get_resume_spec.rb",
+    "spec/career_builder/client/resume_actions_remaining_today_spec.rb",
     "spec/career_builder/resume/lazy_collection_spec.rb",
-    "spec/career_builder/resume_spec.rb",
     "spec/career_builder_spec.rb",
     "spec/spec.opts",
     "spec/spec_helper.rb",
@@ -60,9 +62,11 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Ruby wrapper for the CareerBuilder V2 API}
   s.test_files = [
-    "spec/career_builder/client_spec.rb",
+    "spec/career_builder/client/advanced_resume_search_spec.rb",
+    "spec/career_builder/client/authentication_spec.rb",
+    "spec/career_builder/client/get_resume_spec.rb",
+    "spec/career_builder/client/resume_actions_remaining_today_spec.rb",
     "spec/career_builder/resume/lazy_collection_spec.rb",
-    "spec/career_builder/resume_spec.rb",
     "spec/career_builder_spec.rb",
     "spec/spec_helper.rb",
     "spec/support/webmock.rb"
