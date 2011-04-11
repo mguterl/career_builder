@@ -16,9 +16,18 @@ module CareerBuilder
 
     attr_reader :email, :password
 
+    attr_accessor :connection_retry_count
+
+    DEFAULT_CONNECTION_RETRY_COUNT = 5
+    class << self
+      attr_accessor :connection_retry_count
+    end
+    self.connection_retry_count = DEFAULT_CONNECTION_RETRY_COUNT
+
     def initialize(email, password, options = {})
       @email, @password = email, password
       @debug = options.fetch(:debug) { false }
+      @connection_retry_count = options.fetch(:connection_retry_count) { Client.connection_retry_count }
     end
 
     def resumes(options = {})

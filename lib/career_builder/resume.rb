@@ -2,8 +2,6 @@ module CareerBuilder
 
   class Resume < BasicObject
 
-    attr_reader :client
-
     def initialize(client, partial_resume)
       @client = client
       @partial_resume = partial_resume
@@ -15,6 +13,10 @@ module CareerBuilder
 
     def home_location
       full_resume.home_location
+    end
+
+    def full_resume
+      @full_resume ||= fetch_full_resume
     end
 
     private
@@ -31,8 +33,13 @@ module CareerBuilder
       end
     end
 
-    def full_resume
-      @full_resume ||= client.get_resume(:resume_id => @partial_resume.id)
+    def fetch_full_resume
+      @client.get_resume(:resume_id => @partial_resume.id)
+    rescue Errno::ECONNRESET => e
+      count ||= 0
+      count += 1
+      retry unless count > @client.connection_retry_count
+      raise e
     end
 
   end
