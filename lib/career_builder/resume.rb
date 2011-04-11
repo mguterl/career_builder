@@ -5,14 +5,14 @@ module CareerBuilder
     attr_reader :client
 
     def initialize(client, partial_resume)
-      @partial_resume = partial_resume
       @client = client
+      @partial_resume = partial_resume
     end
 
     def real_contact_email
       full_resume.contact_email
     end
-    
+
     def home_location
       full_resume.home_location
     end
@@ -20,8 +20,8 @@ module CareerBuilder
     private
 
     def method_missing(meth, *args, &block)
-      if partial_resume.respond_to?(meth)
-        partial_resume.send(meth, *args, &block)
+      if @partial_resume.respond_to?(meth)
+        @partial_resume.send(meth, *args, &block)
       else
         if full_resume.respond_to?(meth)
           full_resume.send(meth, *args, &block)
@@ -29,10 +29,6 @@ module CareerBuilder
           super
         end
       end
-    end
-
-    def partial_resume
-      @partial_resume
     end
 
     def full_resume
